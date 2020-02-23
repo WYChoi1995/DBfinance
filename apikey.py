@@ -1,2 +1,0 @@
-api_key = "pb7MsWmOhrqFaMG8XsWvgRlaNaNTbCcBTbGd0RCTCOYlaiFMEYgoQqarbzlj2F82"
-api_secret = "g9nYxSnk9AlxIrrcqrjqTVeAOw7JuoH60ehP20HWUotAmVcYZ3aCxhzD4qsehUQ6"
