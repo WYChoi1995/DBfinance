@@ -20,7 +20,7 @@ dcov <- rcov(dcc_garch_fit)
 
 condcorr <- data.frame(cbind(dcorr[1,2,], dcorr[1,3,], dcorr[2,3,]))
 condcov <- data.frame(cbind(dcov[1,2,], dcov[1,3,], dcov[2,3,]))
-colnames(dsigma) <- c("WTI_sigma", "HSCEI_sigma", "STOXX50E_sigma")
+colnames(dsigma) <- c("WTICL_sigma", "HSCEI_sigma", "STOXX50E_sigma")
 colnames(condcorr) <- c("WTI-HSCEI", "WTI-STOXX50E", "HSCEI-STOXX50E")
 colnames(condcov) <- c("WTI-HSCEI", "WTI-STOXX50E", "HSCEI-STOXX50E")
 

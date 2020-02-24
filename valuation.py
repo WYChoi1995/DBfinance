@@ -3,7 +3,6 @@ import statsmodels.api as sm
 from pandas import Series
 
 
-
 def normality_test(x):
     print("The Test Statistic (Shapiro-Wilk) : %0.6f" % (stats.shapiro(x)[0]))
     print("p-values : %e" % (stats.shapiro(x)[1]))
