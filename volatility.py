@@ -41,6 +41,7 @@ def sum_ratios(ratios):
 def get_optimized_volatility_set(initial, vol_dataset):
     result_x = []
     result_y = []
+
     for i in range(len(vol_dataset)):
         result_x.append(minimize_volatility(initial=initial, i=i, vol_dataset=vol_dataset)[0])
         result_y.append(minimize_volatility(initial=initial, i=i, vol_dataset=vol_dataset)[1])

@@ -1,30 +1,20 @@
 from scipy import stats
-import statsmodels.api as sm
 from pandas import Series
-
-
-def normality_test(x):
-    print("The Test Statistic (Shapiro-Wilk) : %0.6f" % (stats.shapiro(x)[0]))
-    print("p-values : %e" % (stats.shapiro(x)[1]))
-    print("The Test Statistic (Kolmogorov-Smirnov): %0.6f" % (stats.kstest(x, 'norm')[0]))
-    print("p-values : %e" % (stats.kstest(x, 'norm')[1]))
-    print("The Test Statistic (Jarque-Bera): %0.6f" % (sm.stats.stattools.jarque_bera(x)[0]))
-    print("p-values : %e" % (sm.stats.stattools.jarque_bera(x)[1]))
 
 
 def get_kde_pdf(data):
     return stats.gaussian_kde(data.transpose(), bw_method='silverman')
 
 
-def stepdown_valuation(kde_pdf, simulation, risk_free):
+def stepdown_valuation(kde_pdf, trial, risk_free):
     result = []
     return_result = []
 
-    for i in range(simulation):
+    for i in range(trial):
         returns = 1 + kde_pdf.resample(size=504)
         result.append(returns.cumprod(axis=1))
 
-    for i in range(simulation):
+    for i in range(trial):
         if result[i][:, 89].min() >= 0.9:
             return_result.append(1.0211 * (1 + 5 * risk_free))
             continue
@@ -58,3 +48,12 @@ def stepdown_valuation(kde_pdf, simulation, risk_free):
     return_series = 100 * Series(return_result) - 100
 
     return return_series
+
+
+def get_loss_analysis(simulation_result):
+    loss_simulation = simulation_result.loc[lambda result: result < 0]
+    loss_prob = len(loss_simulation) / len(simulation_result)
+    maximum_loss = loss_simulation.min()
+
+    print("Loss Probability: {}%".format(100*loss_prob))
+    print("Maximum Loss: {}%".format(maximum_loss))

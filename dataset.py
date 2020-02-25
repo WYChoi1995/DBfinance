@@ -9,3 +9,4 @@ crudeoil = Commodities().historical_close_price(commodity="Crude Oil WTI", start
 
 basic_asset = merge(merge(hscei, stoxx50e, on="Date"), crudeoil, on="Date")
 asset_volatility = read_csv("variance.csv", index_col="Date")
+

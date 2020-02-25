@@ -42,3 +42,7 @@ class Bonds:
         returns = closeprice.pct_change()
 
         return DataFrame({name[0]: closeprice, name[1]: returns}).dropna()
+
+
+def data_split(dataset, date):
+    return dataset.loc[lambda data: data.index >= date]
