@@ -2,7 +2,7 @@ import investpy
 from pandas import DataFrame
 
 
-class Indices:
+class Indices(object):
     def __init__(self):
         self.get_data = investpy.indices
 
@@ -16,7 +16,7 @@ class Indices:
         return DataFrame({name[0]: closeprice, name[1]: returns}).dropna()
 
 
-class Commodities:
+class Commodities(object):
     def __init__(self):
         self.get_data = investpy.commodities
 
@@ -30,7 +30,7 @@ class Commodities:
         return DataFrame({name[0]: closeprice, name[1]: returns}).dropna()
 
 
-class Bonds:
+class Bonds(object):
     def __init__(self):
         self.get_data = investpy.bonds
 
